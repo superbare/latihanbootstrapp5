@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Bootstrap 5</title>
+    <title>Portfolio Bootstrap 5 Pink (Static)</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
@@ -32,9 +32,11 @@
             display: block; 
         }
 
+        /* Carousel dimodifikasi jadi statis */
         .carousel-item {
             height: 400px; 
             background-color: #ffffff; 
+            display: block; /* Memaksa tampil karena JS dihapus */
         }
 
         .carousel-item img {
@@ -64,20 +66,14 @@
             transform: translateY(-5px); 
         }
 
-        .accordion-button:not(.collapsed) {
+        /* Style Accordion Statis */
+        .accordion-button {
+            pointer-events: none; /* Tidak bisa diklik */
             color: #fff;
             background-color: var(--bs-pink);
-            box-shadow: inset 0 -1px 0 rgba(0,0,0,.125);
-        }
-        .accordion-button:focus {
-            border-color: var(--bs-pink);
-            box-shadow: 0 0 0 0.25rem rgba(214, 51, 132, 0.25);
         }
         .accordion-button::after {
-            filter: grayscale(100%);
-        }
-        .accordion-button:not(.collapsed)::after {
-            filter: brightness(0) invert(1);
+            display: none; /* Hilangkan panah */
         }
 
         .card-overlay-text {
@@ -92,11 +88,10 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
         <div class="container">
             <a class="navbar-brand fw-bold text-pink" href="#">Portfolio</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler" type="button">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto align-items-center">
+            <div class="collapse navbar-collapse show" id="navbarNav"> <ul class="navbar-nav ms-auto align-items-center">
                     <li class="nav-item"><a class="nav-link" href="#hero">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="#info-columns">Info</a></li>
                     <li class="nav-item"><a class="nav-link" href="#galeri">Galeri</a></li>
@@ -118,7 +113,7 @@
                 <div class="col-lg-6 col-md-12 mb-4 mb-lg-0">
                     <h1 class="display-4 fw-bold text-pink">Hai, Capybara</h1>
                     <p class="lead text-secondary">
-                        Selamat datang di website portfolio saya. Website ini menggunakan tema Pink dan Bootstrap 5 yang responsif.
+                        Selamat datang di website portfolio saya. Versi ini adalah versi statis (tanpa interaksi JavaScript).
                     </p>
                     <a href="#galeri" class="btn btn-pink btn-lg shadow-sm">Lihat Galeri</a>
                 </div>
@@ -156,23 +151,10 @@
             <h3 class="text-center text-pink fw-bold mb-4">Galeri Dokumentasi</h3>
             <div class="row justify-content-center">
                 <div class="col-lg-8 col-md-10">
-                    <div id="sliderLatihan" class="carousel slide overflow-hidden" data-bs-ride="carousel">
-                        <div class="carousel-inner rounded-4 shadow bg-white"> 
-                            <div class="carousel-item active">
-                                <img src="https://i.pinimg.com/736x/ae/5d/68/ae5d68f9c8bf2d8d8e4fbb48ff9da4ed.jpg" class="d-block" alt="Slide 1">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="https://i.pinimg.com/736x/e7/6d/0d/e76d0d50b2cf6f7b3c2338a5c7b55232.jpg" class="d-block" alt="Slide 2">
-                            </div>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#sliderLatihan" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true" style="filter: invert(1);"></span> 
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#sliderLatihan" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true" style="filter: invert(1);"></span>
-                        </button>
+                    <div id="sliderLatihan" class="card border-0 rounded-4 shadow overflow-hidden">
+                        <img src="https://i.pinimg.com/736x/ae/5d/68/ae5d68f9c8bf2d8d8e4fbb48ff9da4ed.jpg" class="d-block w-100" alt="Slide 1">
                     </div>
-                </div>
+                    </div>
             </div>
         </div>
     </section>
@@ -226,7 +208,7 @@
                         <div class="card-body py-5 bg-light">
                             <h5 class="card-title text-muted mb-3">Anda harus Login untuk melihat bagian ini</h5>
                             <p class="card-text text-muted mb-4">Bagian ini berisi materi download eksklusif dan tutorial video tambahan.</p>
-                            <button type="button" class="btn btn-pink px-4 py-2" data-bs-toggle="modal" data-bs-target="#loginModal">
+                            <button type="button" class="btn btn-pink px-4 py-2">
                                 Login Sekarang
                             </button>
                         </div>
@@ -245,42 +227,46 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="accordion shadow rounded-3 overflow-hidden" id="accordionExample">
+                        
                         <div class="accordion-item">
-                            <h2 class="accordion-header" id="headingOne">
-                                <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <h2 class="accordion-header">
+                                <div class="accordion-button fw-bold">
                                     Apa itu Bootstrap 5?
-                                </button>
+                                </div>
                             </h2>
-                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                            <div class="accordion-collapse show">
                                 <div class="accordion-body text-muted">
                                     Bootstrap 5 adalah versi terbaru dari framework CSS paling populer di dunia. Versi ini menghapus ketergantungan pada jQuery dan menawarkan fitur grid yang lebih canggih serta utilitas API baru.
                                 </div>
                             </div>
                         </div>
+
                         <div class="accordion-item">
-                            <h2 class="accordion-header" id="headingTwo">
-                                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            <h2 class="accordion-header">
+                                <div class="accordion-button fw-bold">
                                     Kenapa memilih tema Pink?
-                                </button>
+                                </div>
                             </h2>
-                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                            <div class="accordion-collapse show">
                                 <div class="accordion-body text-muted">
                                     Warna pink dipilih untuk memberikan kesan yang lembut, ceria, dan estetik. Dalam psikologi warna, pink sering dikaitkan dengan keramahan dan kreativitas.
                                 </div>
                             </div>
                         </div>
+
                         <div class="accordion-item">
-                            <h2 class="accordion-header" id="headingThree">
-                                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            <h2 class="accordion-header">
+                                <div class="accordion-button fw-bold">
                                     Bagaimana cara menghubungi Anda?
-                                </button>
+                                </div>
                             </h2>
-                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                            <div class="accordion-collapse show">
                                 <div class="accordion-body text-muted">
                                     Anda dapat menggunakan formulir kontak yang tersedia di bagian bawah halaman ini, atau melalui media sosial yang tertera.
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -332,36 +318,5 @@
         </div>
     </footer>
 
-    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content rounded-4 border-0">
-                <div class="modal-header bg-pink-dark text-white">
-                    <h5 class="modal-title" id="loginModalLabel">Login Member</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body p-4">
-                    <form>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Email address</label>
-                            <input type="email" class="form-control bg-light" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Password</label>
-                            <input type="password" class="form-control bg-light" id="exampleInputPassword1">
-                        </div>
-                        <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            <label class="form-check-label" for="exampleCheck1">Ingat saya</label>
-                        </div>
-                        <button type="submit" class="btn btn-pink w-100">Masuk</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-</body>
-
+    </body>
 </html>
